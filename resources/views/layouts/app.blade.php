@@ -23,7 +23,7 @@
 
             <div class="collapse navbar-collapse" id="menu">
                 <ul class="nav navbar-nav">
-                    <li><a href="{{ url('/rappers') }}">Rappers</a></li>
+                    <li><a href="{{ route('rappers.index') }}">Rappers</a></li>
                 </ul>
             </div>
         </div>

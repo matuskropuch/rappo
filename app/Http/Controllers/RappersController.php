@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
+use App\Rapper;
 
 class RappersController extends Controller
 {
@@ -15,7 +16,9 @@ class RappersController extends Controller
      */
     public function index()
     {
-        return view('rappers.index');
+        $rappers = Rapper::all();
+
+        return view('rappers.index', compact('rappers'));
     }
 
     /**
@@ -25,7 +28,7 @@ class RappersController extends Controller
      */
     public function create()
     {
-        //
+        return view('rappers.create');
     }
 
     /**
@@ -36,7 +39,9 @@ class RappersController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Rapper::create($request->all());
+
+        return redirect()->route('rappers.index');
     }
 
     /**
