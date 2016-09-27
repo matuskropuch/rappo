@@ -12,7 +12,7 @@
     <tbody>
         @foreach($rappers as $rapper)
         <tr>
-            <td>{{ $rapper->first_name }}</td>
+            <td><a href="{{ route('rappers.show', $rapper->nickname) }}">{{ $rapper->first_name }}</a></td>
             <td>{{ $rapper->last_name }}</td>
             <td>{{ $rapper->nickname }}</td>
             <td>{{ $rapper->date_of_birth }}</td>

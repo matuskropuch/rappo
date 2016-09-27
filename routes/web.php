@@ -14,4 +14,7 @@
 Route::get('/', function () {
     return view('layouts.app');
 });
-Route::resource('rappers', 'RappersController');
+Route::get('/rappers', 'RappersController@index')->name('rappers.index');
+Route::get('/rappers/create', 'RappersController@create')->name('rappers.create');
+Route::post('/rappers', 'RappersController@store')->name('rappers.store');
+Route::get('/@{nickname}', 'RappersController@show')->name('rappers.show');
