@@ -15,7 +15,7 @@
             <td><a href="{{ route('rappers.show', $rapper->nickname) }}">{{ $rapper->first_name }}</a></td>
             <td>{{ $rapper->last_name }}</td>
             <td>{{ $rapper->nickname }}</td>
-            <td>{{ $rapper->date_of_birth }}</td>
+            <td>{{ $rapper->born_at }}</td>
         </tr>
         @endforeach
     </tbody>

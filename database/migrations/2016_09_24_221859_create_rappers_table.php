@@ -18,7 +18,7 @@ class CreateRappersTable extends Migration
             $table->text('first_name');
             $table->text('last_name');
             $table->text('nickname');
-            $table->date('date_of_birth');
+            $table->date('born_at');
             $table->timestamps();
         });
     }

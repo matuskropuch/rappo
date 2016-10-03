@@ -1,6 +1,17 @@
 @extends('layouts.app')
 
 @section('content')
+
+@if($errors->count())
+<div class="alert alert-danger">
+    <ul>
+        @foreach($errors->all() as $error)
+            <li>{{ $error }}</li>
+        @endforeach
+    </ul>
+</div>
+@endif
+
 <h1>Add a Rapper</h1>
 
 <div>
@@ -23,8 +34,8 @@
         </div>
 
         <div class="form-group">
-            <label for="date_of_birth">Date of birth</label>
-            <input type="date" id="date_of_birth" name="date_of_birth" class="form-control">
+            <label for="born_at">Date of birth</label>
+            <input type="date" id="born_at" name="born_at" class="form-control">
         </div>
 
         <div class="form-group">
