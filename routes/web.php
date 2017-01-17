@@ -11,9 +11,7 @@
 |
 */
 
-Route::get('/', function () {
-    return view('layouts.app');
-});
+Route::get('/', 'HomepageController@index')->name('homepage');
 Route::get('/rappers', 'RappersController@index')->name('rappers.index');
 Route::get('/rappers/create', 'RappersController@create')->name('rappers.create');
 Route::post('/rappers', 'RappersController@store')->name('rappers.store');
