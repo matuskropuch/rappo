@@ -2,6 +2,8 @@
 /public/storage
 /public/hot
 /vendor
+/public/js
+/public/css
 /.idea
 /public/mix-manifest.json
 Homestead.json
