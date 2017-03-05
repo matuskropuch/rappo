@@ -11,10 +11,13 @@
 |
 */
 
+Route::group(['middleware' => 'auth'], function() {
+    Route::get('/rappers/create', 'RappersController@create')->name('rappers.create');
+    Route::post('/rappers', 'RappersController@store')->name('rappers.store');
+});
+
 Route::get('/', 'HomepageController@index')->name('homepage');
 Route::get('/rappers', 'RappersController@index')->name('rappers.index');
-Route::get('/rappers/create', 'RappersController@create')->name('rappers.create');
-Route::post('/rappers', 'RappersController@store')->name('rappers.store');
 Route::get('/@{nickname}', 'RappersController@show')->name('rappers.show');
 Auth::routes();
 
