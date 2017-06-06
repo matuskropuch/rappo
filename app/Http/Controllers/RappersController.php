@@ -53,6 +53,32 @@ class RappersController extends Controller
         return redirect()->route('rappers.index');
     }
 
+    public function edit($nickname)
+    {
+        $rapper = Rapper::where('nickname', '=', $nickname)->first();
+
+        return view('rappers.edit', compact('rapper'));
+    }
+
+    public function update(Request $request)
+    {
+        $this->validate($request, [
+            'first_name' => 'required',
+            'last_name' => 'required',
+            'nickname' => 'bail|required|unique:rappers',
+            'born_at' => 'required|before:' . Carbon::now()->format('Y-m-d')
+        ]);
+
+        $rapper = Rapper::find($request->id);
+        $rapper->first_name = $request->first_name;
+        $rapper->last_name = $request->last_name;
+        $rapper->nickname = $request->nickname;
+        $rapper->born_at = $request->born_at;
+        $rapper->save();
+
+        return redirect()->route('rappers.index');
+    }
+
     /**
      * Display the specified resource.
      *
