@@ -48,11 +48,19 @@ class RappersController extends Controller
             'born_at' => 'required|before:' . Carbon::now()->format('Y-m-d')
         ]);
 
+        $relative_path = "rappers_images/rapper-{$request->nickname}."
+                         . pathinfo($_FILES['image']['name'], PATHINFO_EXTENSION);
+        $image_location = public_path() . "/" . $relative_path;
+
+        move_uploaded_file($_FILES["image"]["tmp_name"], $image_location);
+
         auth()->user()->rappers()->create([
             'nickname' => $request->nickname,
             'first_name' => $request->first_name,
             'last_name' => $request->last_name,
             'born_at' => $request->born_at,
+            'image' => $relative_path,
+            'bio' => $request->bio
         ]);
 
         return redirect()->route('rappers.index');
@@ -69,7 +77,7 @@ class RappersController extends Controller
     {
         $rapper = Rapper::find($id);
         $rapper->update([
-            $request->only('first_name', 'last_name', 'nickname', 'born_at')                  
+            $request->only('first_name', 'last_name', 'nickname', 'born_at')
         ]);
 
         return redirect()->route('rappers.show', $rapper->nickname);

@@ -15,7 +15,7 @@
 
 <div class="panel panel-default">
     <div class="panel-body">
-        <form action="{{ route('rappers.store') }}" method="post">
+        <form action="{{ route('rappers.store') }}" method="post" enctype="multipart/form-data">
             <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
             <div class="form-group">
@@ -36,6 +36,16 @@
             <div class="form-group">
                 <label for="born_at">Date of birth</label>
                 <input type="date" id="born_at" name="born_at" class="form-control">
+            </div>
+
+            <div class="form-group">
+                <label for="image">Image</label>
+                <input type="file" id="image" name="image" class="form-control">
+            </div>
+
+            <div class="form-group">
+                <label for="bio">Biography</label>
+                <textarea id="bio" name="bio" rows="5" class="form-control"></textarea>
             </div>
 
             <div class="form-group">

@@ -29,6 +29,11 @@
             </div>
 
             <div class="form-group">
+                <label for="bio">Biography</label>
+                <textarea id="bio" name="bio" rows="5" class="form-control"></textarea>
+            </div>
+
+            <div class="form-group">
                 <button class="btn btn-primary pull-right">Save</button>
             </div>
         </form>
