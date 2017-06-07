@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-use Auth;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Rapper;
@@ -54,7 +53,7 @@ class RappersController extends Controller
             'first_name' => $request->first_name,
             'last_name' => $request->last_name,
             'born_at' => $request->born_at,
-            'created_by' => Auth::user()->id
+            'created_by' => auth()->id
         ]);
 
         return redirect()->route('rappers.index');
@@ -62,7 +61,7 @@ class RappersController extends Controller
 
     public function edit($nickname)
     {
-        $rapper = Rapper::where('nickname', '=', $nickname)->first();
+        $rapper = Rapper::where('nickname', '=', $nickname)->firstOrFail();
 
         return view('rappers.edit', compact('rapper'));
     }
@@ -71,10 +70,7 @@ class RappersController extends Controller
     {
         $rapper = Rapper::find($id);
         $rapper->update([
-            'first_name' => $request->first_name,
-            'last_name' => $request->last_name,
-            'nickname' => $request->nickname,
-            'born_at' => $request->born_at                    
+            $request->only('first_name', 'last_name', 'nickname', 'born_at')                  
         ]);
 
         return redirect()->route('rappers.show', $rapper->nickname);

@@ -27,8 +27,8 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
-    public function createdRappers()
+    public function rappers()
     {
-        return $this->hasMany(Rapper::class, 'created_by_id', 'id');
+        return $this->hasMany(Rapper::class, 'created_by', 'id');
     }
 }
