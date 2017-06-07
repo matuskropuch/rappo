@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use Auth;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Rapper;
@@ -48,7 +49,13 @@ class RappersController extends Controller
             'born_at' => 'required|before:' . Carbon::now()->format('Y-m-d')
         ]);
 
-        Rapper::create($request->all());
+        Rapper::create([
+            'nickname' => $request->nickname,
+            'first_name' => $request->first_name,
+            'last_name' => $request->last_name,
+            'born_at' => $request->born_at,
+            'created_by' => Auth::user()->id
+        ]);
 
         return redirect()->route('rappers.index');
     }
