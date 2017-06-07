@@ -19,7 +19,7 @@ class CreateRappersTable extends Migration
             $table->text('last_name');
             $table->text('nickname');
             $table->date('born_at');
-            $table->integer('created_by')->unsigned();
+            $table->foreign('created_by')->references('id')->on('users');
             $table->timestamps();
         });
     }
