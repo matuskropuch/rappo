@@ -60,23 +60,17 @@ class RappersController extends Controller
         return view('rappers.edit', compact('rapper'));
     }
 
-    public function update(Request $request)
+    public function update(Request $request, $id)
     {
-        $this->validate($request, [
-            'first_name' => 'required',
-            'last_name' => 'required',
-            'nickname' => 'bail|required|unique:rappers',
-            'born_at' => 'required|before:' . Carbon::now()->format('Y-m-d')
+        $rapper = Rapper::find($id);
+        $rapper->update([
+            'first_name' => $request->first_name,
+            'last_name' => $request->last_name,
+            'nickname' => $request->nickname,
+            'born_at' => $request->born_at                    
         ]);
 
-        $rapper = Rapper::find($request->id);
-        $rapper->first_name = $request->first_name;
-        $rapper->last_name = $request->last_name;
-        $rapper->nickname = $request->nickname;
-        $rapper->born_at = $request->born_at;
-        $rapper->save();
-
-        return redirect()->route('rappers.index');
+        return redirect()->route('rappers.show', $rapper->nickname);
     }
 
     /**

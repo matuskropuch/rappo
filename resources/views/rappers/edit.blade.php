@@ -2,21 +2,11 @@
 
 @section('content')
 
-@if($errors->count())
-<div class="alert alert-danger">
-    <ul>
-        @foreach($errors->all() as $error)
-            <li>{{ $error }}</li>
-        @endforeach
-    </ul>
-</div>
-@endif
-
 <h1>Editing Rapper</h1>
 
 <div class="panel panel-default">
     <div class="panel-body">
-        <form action="{{ route('rappers.store') }}" method="post">
+        <form action="{{ route('rappers.update', $rapper->id) }}" method="post">
             <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
             <div class="form-group">
@@ -36,7 +26,7 @@
 
             <div class="form-group">
                 <label for="born_at">Date of birth</label>
-                <input type="date" id="born_at" name="born_at" class="form-control" value="{{ $rapper->born_at }}>
+                <input type="date" id="born_at" name="born_at" class="form-control" value="{{ $rapper->born_at }}">
             </div>
 
             <div class="form-group">
@@ -45,4 +35,5 @@
         </form>
     </div>
 </div>
+
 @endsection

@@ -12,8 +12,9 @@
 */
 
 Route::group(['middleware' => 'auth'], function() {
-    Route::get('/rappers/create', 'RappersController@create')->name('rappers.create');
     Route::post('/rappers', 'RappersController@store')->name('rappers.store');
+    Route::post('/rappers/{id}', 'RappersController@update')->name('rappers.update');
+    Route::get('/rappers/create', 'RappersController@create')->name('rappers.create');
 });
 
 Route::get('/edit/{nickname}', 'RappersController@edit')->name('rappers.edit');
