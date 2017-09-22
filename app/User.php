@@ -31,4 +31,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(Rapper::class, 'created_by', 'id');
     }
+
+    public function albums()
+    {
+        return $this->hasMany(Album::class, 'created_by', 'id');
+    }
 }

@@ -15,12 +15,21 @@ Route::group(['middleware' => 'auth'], function() {
     Route::post('/rappers', 'RappersController@store')->name('rappers.store');
     Route::post('/rappers/{id}', 'RappersController@update')->name('rappers.update');
     Route::get('/rappers/create', 'RappersController@create')->name('rappers.create');
-    Route::get('/edit/{nickname}', 'RappersController@edit')->name('rappers.edit');
+    Route::get('/rappers/edit/{nickname}', 'RappersController@edit')->name('rappers.edit');
+
+    Route::post('/{id}/albums', 'AlbumsController@store')->name('albums.store');
+    Route::post('/albums/{id}', 'AlbumsController@update')->name('albums.update');
+    Route::get('/{id}/albums/create', 'AlbumsController@create')->name('albums.create');
+    Route::get('/albums/edit/{id}', 'AlbumsController@edit')->name('albums.edit');
 });
 
 Route::get('/', 'HomepageController@index')->name('homepage');
+
 Route::get('/rappers', 'RappersController@index')->name('rappers.index');
 Route::get('/@{nickname}', 'RappersController@show')->name('rappers.show');
-Auth::routes();
 
+Route::get('/albums', 'AlbumsController@index')->name('albums.index');
+Route::get('/albums/show/{id}', 'AlbumsController@show')->name('albums.show');
+
+Auth::routes();
 Route::get('/home', 'HomeController@index');

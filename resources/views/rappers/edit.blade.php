@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('content')
 
-<h1>Editing Rapper</h1>
+<h1>Edit a Rapper</h1>
 
 <div class="panel panel-default">
     <div class="panel-body">
