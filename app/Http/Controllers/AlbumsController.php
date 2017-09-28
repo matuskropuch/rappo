@@ -27,7 +27,7 @@ class AlbumsController extends Controller
      */
     public function create($id)
     {
-        $rapper = Rapper::find($id);
+        $rapper = Rapper::findOrFail($id);
 
         return view('albums.create', compact('rapper'));
     }
@@ -49,8 +49,8 @@ class AlbumsController extends Controller
 
         auth()->user()->albums()->create([
             'name' => $request->name,
-            'artist' => $id,
-            'release_date' => $request->release_date,
+            'rapper_id' => $id,
+            'released_at' => $request->released_at,
             'image' => $relative_path,
             'info' => $request->info
         ]);
@@ -81,9 +81,9 @@ class AlbumsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $album = Album::find($id);
+        $album = Album::findOrFail($id);
         $album->update(
-            $request->only('name', 'artist', 'release_date', 'info')
+            $request->only('name', 'rapper_id', 'released_at', 'info')
         );
 
         return redirect()->route('albums.show', $album->id);

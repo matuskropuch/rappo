@@ -7,11 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 class Album extends Model
 {
     public $fillable = [
-        'name', 'artist', 'info', 'image', 'release_date', 'created_by',
+        'name', 'rapper_id', 'info', 'image', 'released_at', 'created_by',
     ];
 
-    public function artist_name()
+    public function rapper()
     {
-        return $this->hasOne(Rapper::class, 'id', 'artist');
+        return $this->hasOne(Rapper::class, 'id', 'rapper');
     }
 }

@@ -14,8 +14,8 @@
             </div>
 
             <div class="form-group">
-                <label for="release_date">Release date</label>
-                <input type="date" id="release_date" name="release_date" class="form-control">
+                <label for="released_at">Release date</label>
+                <input type="date" id="released_at" name="released_at" class="form-control">
             </div>
 
             <div class="form-group">

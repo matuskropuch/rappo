@@ -48,12 +48,6 @@ class RappersController extends Controller
             'born_at' => 'required|before:' . Carbon::now()->format('Y-m-d')
         ]);
 
-        // $relative_path = "rappers_images/rapper-{$request->nickname}."
-        //                  . pathinfo($_FILES['image']['name'], PATHINFO_EXTENSION);
-        // $image_location = public_path() . "/" . $relative_path;
-
-        // move_uploaded_file($_FILES["image"]["tmp_name"], $image_location);
-
         $filename = "rapper-{$request->nickname}." . pathinfo($_FILES['image']['name'], PATHINFO_EXTENSION);
         $relative_path = "images/rappers/" . $filename;
         $path = $request->file('image')->storeAs(

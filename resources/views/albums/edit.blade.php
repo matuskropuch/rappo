@@ -14,8 +14,8 @@
             </div>
 
             <div class="form-group">
-                <label for="artist">Artist</label>
-                <select id="artist" name="artist" class="form-control">
+                <label for="rapper_id">Artist</label>
+                <select id="rapper_id" name="rapper_id" class="form-control">
                     @foreach($rappers as $rapper)
                     <option value="{{ $rapper->id }}">{{ $rapper->nickname }}</option>
                     @endforeach
@@ -23,8 +23,8 @@
             </div>
 
             <div class="form-group">
-                <label for="release_date">Release date</label>
-                <input type="date" id="release_date" name="release_date" class="form-control">
+                <label for="released_at">Release date</label>
+                <input type="date" id="released_at" name="released_at" class="form-control">
             </div>
 
             <div class="form-group">

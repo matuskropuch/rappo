@@ -29,14 +29,14 @@
         <thead>
             <th>Album name</th>
             <th>Artist</th>
-            <th>Released date</th>
+            <th>Release date</th>
         </thead>
         <tbody>
             @foreach($rapper->albums as $album)
             <tr>
                 <td><a href="{{ route('albums.show', $album->id) }}">{{ $album->name }}</a></td>
-                <td>{{ $album->artist_name->nickname }}</td>
-                <td>{{ $album->release_date }}</td>
+                <td>{{ $album->rapper->nickname }}</td>
+                <td>{{ $album->released_at }}</td>
             </tr>
             @endforeach
         </tbody>

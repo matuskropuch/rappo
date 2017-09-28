@@ -10,7 +10,7 @@
             <p>{{ $album->info }}</p>
         </div>
         <div class="col-md-4">
-            <img src="{{ URL::to('/storage') }}/{{ $album->image }}" class="img-responsive img-thumbnail center-block" alt="Image of album {{ $album->name }} by {{ $album->artist_name->nickname }}">
+            <img src="{{ URL::to('/storage') }}/{{ $album->image }}" class="img-responsive img-thumbnail center-block" alt="Image of album {{ $album->name }} by {{ $album->rapper->nickname }}">
         </div>
         @if(auth()->id() == $album->created_by)
         <div class="col-md-12">

@@ -17,6 +17,6 @@ class Rapper extends Model
 
     public function albums()
     {
-        return $this->hasMany(Album::class, 'artist', 'id');
+        return $this->hasMany(Album::class);
     }
 }
