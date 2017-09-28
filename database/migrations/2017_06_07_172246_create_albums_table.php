@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateRappersTable extends Migration
+class CreateAlbumsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,17 +13,17 @@ class CreateRappersTable extends Migration
      */
     public function up()
     {
-        Schema::create('rappers', function (Blueprint $table) {
+        Schema::create('albums', function (Blueprint $table) {
             $table->increments('id');
-            $table->text('first_name');
-            $table->text('last_name');
-            $table->text('nickname');
-            $table->date('born_at');
+            $table->text('name');
+            $table->integer('rapper_id')->unsigned();
+            $table->date('released_at');
             $table->text('image');
-            $table->text('bio');
+            $table->text('info');
             $table->integer('created_by')->unsigned();
             $table->timestamps();
 
+            $table->foreign('rapper_id')->references('id')->on('rappers');
             $table->foreign('created_by')->references('id')->on('users');
         });
     }
@@ -35,6 +35,6 @@ class CreateRappersTable extends Migration
      */
     public function down()
     {
-        Schema::drop('rappers');
+        Schema::dropIfExists('albums');
     }
 }

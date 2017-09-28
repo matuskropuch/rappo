@@ -26,4 +26,14 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function rappers()
+    {
+        return $this->hasMany(Rapper::class, 'created_by', 'id');
+    }
+
+    public function albums()
+    {
+        return $this->hasMany(Album::class, 'created_by', 'id');
+    }
 }

@@ -48,9 +48,40 @@ class RappersController extends Controller
             'born_at' => 'required|before:' . Carbon::now()->format('Y-m-d')
         ]);
 
-        Rapper::create($request->all());
+        $filename = "rapper-{$request->nickname}." . pathinfo($_FILES['image']['name'], PATHINFO_EXTENSION);
+        $relative_path = "images/rappers/" . $filename;
+        $path = $request->file('image')->storeAs(
+            'public/images/rappers',
+            $filename
+        );
+
+        auth()->user()->rappers()->create([
+            'nickname' => $request->nickname,
+            'first_name' => $request->first_name,
+            'last_name' => $request->last_name,
+            'born_at' => $request->born_at,
+            'image' => $relative_path,
+            'bio' => $request->bio
+        ]);
 
         return redirect()->route('rappers.index');
+    }
+
+    public function edit($nickname)
+    {
+        $rapper = Rapper::findByNickname($nickname);
+
+        return view('rappers.edit', compact('rapper'));
+    }
+
+    public function update(Request $request, $id)
+    {
+        $rapper = Rapper::find($id);
+        $rapper->update(
+            $request->only('first_name', 'last_name', 'nickname', 'born_at', 'bio')
+        );
+
+        return redirect()->route('rappers.show', $rapper->nickname);
     }
 
     /**
@@ -61,7 +92,7 @@ class RappersController extends Controller
      */
     public function show($nickname)
     {
-        $rapper = Rapper::where('nickname', '=', $nickname)->first();
+        $rapper = Rapper::findByNickname($nickname);
 
         return view('rappers.show', compact('rapper'));
     }
